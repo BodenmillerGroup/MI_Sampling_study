@@ -16,3 +16,29 @@ BiocManager::install(c("SingleCellExperiment","doParallel","RColorBrewer","Count
 ```
 
 In addition, the [Pagoda2 pacakge](https://github.com/kharchenkolab/pagoda2) has to be installed to proces. Please check on the corresponding github page the different dependencies needed to install it. 
+
+
+## Pre-processing the data 
+
+Data has to be stored in a SingleCellExperiment (SCE) object in order to be properly analysed. For a thoroughly description and introduction to the SCE object please have a look at this [introduction](https://bioconductor.org/packages/devel/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html). The following constraints need to be fullfill :
+
+- The cell/spot classification/clustering need to be stored in the ColLabels part of the SCE object. It has to be a numerical vector for compatibility.
+- X and Y location of cells should be stored in the column metadata (ColData) of the SCE object with the "Location_Center_X" and "Location_Center_Y" names. In addition the "ImageNumber" column will be added and set to 1 (all cells are supposed to come from the same image).
+
+Scripts to transform raw Visium or MI datasets into a usable SCE object are available in this repository (see above).
+
+## Performing sampling analysis
+
+We assume a properly organised SCE object (called here sce) is available. In addition the **List_scripts_sampling.R** file has been downloaded locally.
+We start by loading the different functions from the R file :
+
+```r
+source("path/to/file/List_scripts_sampling.R")
+```
+
+We can then perform 
+
+
+
+
+
