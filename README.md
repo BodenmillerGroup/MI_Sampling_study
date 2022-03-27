@@ -5,4 +5,14 @@ This repository contains all the code and scripts used to perform all the spatia
 This repository contains the following scripts :
 
 - **List_scripts_sampling.R** : file containing all the functions required for the spatial sampling analysis
-- 
+- **Visium_data_processing.R** : example of how to download, process and analyse Visium® datasets.
+
+## Installing required pacakges 
+
+Several packages are needed to perform the different scripts. They can be installed by the following command :
+
+```r
+BiocManager::install(c("SingleCellExperiment","doParallel","RColorBrewer","CountClust))
+```
+
+In addition, the [Pagoda2 pacakge](https://github.com/kharchenkolab/pagoda2) has to be installed to proces. Please check on the corresponding github page the different dependencies needed to install it. 
