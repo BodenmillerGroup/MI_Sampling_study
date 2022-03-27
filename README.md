@@ -7,7 +7,7 @@ This repository contains the following scripts :
 - **List_scripts_sampling.R** : file containing all the functions required for the spatial sampling analysis
 - **Visium_data_processing.R** : example of how to download, process and analyse Visium® datasets.
 
-## Installing required pacakges 
+## Installing required packages 
 
 Several packages are needed to perform the different scripts. They can be installed by the following command :
 
