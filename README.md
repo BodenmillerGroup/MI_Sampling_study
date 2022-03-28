@@ -17,19 +17,19 @@ if (!require("BiocManager", quietly = TRUE))
 BiocManager::install(c("SingleCellExperiment","doParallel","RColorBrewer","CountClust))
 ```
 
-In addition, the [Pagoda2 pacakge](https://github.com/kharchenkolab/pagoda2) has to be installed to proces. Please check on the corresponding github page the different dependencies needed to install it. 
+In addition, the [Pagoda2 pacakge](https://github.com/kharchenkolab/pagoda2) has to be installed to process the spatial transcriptomic data in an efficient manner. Please check on the corresponding github page the different dependencies needed to install it. 
 
 
 ## Pre-processing the data 
 
 Data has to be stored in a SingleCellExperiment (SCE) object in order to be properly analysed. For a thoroughly description and introduction to the SCE object please have a look at this [introduction](https://bioconductor.org/packages/devel/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html). The following constraints need to be fullfill :
 
-- The cell/spot classification/clustering need to be stored in the ColLabels part of the SCE object. It has to be a numerical vector for compatibility.
-- X and Y location of cells should be stored in the column metadata (ColData) of the SCE object with the "Location_Center_X" and "Location_Center_Y" names. In addition the "ImageNumber" column will be added and set to 1 (all cells are supposed to come from the same image).
+- The cell/spot classification/clustering need to be stored in the **ColLabels** part of the SCE object. It has to be a numerical vector for compatibility.
+- X and Y location of cells should be stored in the column metadata (ColData) of the SCE object with the **"Location_Center_X"** and **"Location_Center_Y"** names. In addition the **"ImageNumber"** column will be added and set to 1 (all cells are supposed to come from the same image).
 
 Scripts to transform raw Visium or MI datasets into a usable SCE object are available in this repository (see above).
 
-## Performing sampling analysis
+## Performing regular sampling analysis using one large Field of View (FoV)
 
 We assume a properly organised SCE object (called here sce) is available. In addition the **List_scripts_sampling.R** file has been downloaded locally.
 We start by loading the different functions from the R file :
@@ -75,5 +75,18 @@ Parameter_table = data.frame(Height =height_vector,
 Fitting_tau = Visualize_complex_sampling(Complex_sampling,Parameter_table)
 ```
 
+## Performing sampling analysis using a large number of small FoVs
 
+To conclude this tutorial, we will see how to estimate the 𝛂 parameter using a large number of small FoV. This can be done using large-scale MI datasets for instance. We assume here that a correct SCE object is available and that it contains data from multiple FoVs. The FoV will be encoded in the **ImageNumber** channel (numerical values).
+
+First we obtain a rough alpha estimate for each FoV :
+
+```r
+Alpha_estimate = Global_alpha_estimation(sce)
+```
+This generates a data.table object where the first column corresponds to the alpha estimate and the second to the quality of the estimate (correlation coefficient). Estimations with a low coefficients correlation (i.e unreliable/low-quality) should be removed and only high quality estimates used for final estimation :
+
+```r
+mean(Alpha_estimate$Alpha[Alpha_estimate$R_squared>0.9])
+```
 
