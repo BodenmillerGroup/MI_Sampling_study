@@ -12,6 +12,8 @@ This repository contains the following scripts :
 Several packages are needed to perform the different scripts. They can be installed by the following command :
 
 ```r
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
 BiocManager::install(c("SingleCellExperiment","doParallel","RColorBrewer","CountClust))
 ```
 
