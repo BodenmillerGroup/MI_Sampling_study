@@ -38,9 +38,42 @@ We start by loading the different functions from the R file :
 source("path/to/file/List_scripts_sampling.R")
 ```
 
-We can then perform 
 
+We can then perform a basic sampling analysis :
 
+```r
+Simple_sampling_analysis = Perform_sampling_analysis(sce,Selected_image = 1,N_times = 50,N_sampling_region_vector = 1:20,width_FOV_vector = 400,height_FOV_vector = 400,Threshold_detection = 50)
+```
+Here various samplings are tested with different number of ROIs (from 1 to 20) and with ROIs being squares of 400µm. We also specify that 50 cells/spots of each group/cluster have to be sampled in order to consider a group to be detected.
+
+We can then fit the empirical model described in the manuscript and extract the two model parameters :
+
+```r
+Visualize_simple_sampling(Simple_sampling_analysis)
+```
+
+More complex analyses can also be performed. For instance we can measure the impact of the ROIs size on the tau parameter. We thus perform sampling with 7 different values 
+
+```r
+height_vector = rep(c(200,250,300,350,400,450,500),each=10)
+width_vector = rep(c(200,250,300,350,400,450,500),each=10)
+N_sampling_region_vector = rep((1:10),7)
+
+Complex_sampling = Perform_sampling_analysis(sce,Selected_image = 1,N_times = 50,
+                                             N_sampling_region_vector = N_sampling_region_vector,
+                                             width_FOV_vector = width_vector,
+                                             height_FOV_vector = height_vector,
+                                             Threshold_detection = 50)
+
+```
+This step can be quite computationally heavy and will likely take some time. Once it is finished you can extract the different tau values easily :
+
+```r
+Parameter_table = data.frame(Height =height_vector,
+                             Width =width_vector)
+
+Fitting_tau = Visualize_complex_sampling(Complex_sampling,Parameter_table)
+```
 
 
 
