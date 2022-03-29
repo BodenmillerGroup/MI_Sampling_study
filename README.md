@@ -17,7 +17,7 @@ Several packages are needed to perform the different scripts. They can be instal
 ```r
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install(c("SingleCellExperiment","doParallel","RColorBrewer","CountClust","N2R"))
+BiocManager::install(c("SingleCellExperiment","doParallel","RColorBrewer","CountClust","N2R","igraph"))
 ```
 
 In addition, the [Pagoda2 package](https://github.com/kharchenkolab/pagoda2) has to be installed to process the spatial transcriptomic data in an efficient manner. Please check on the corresponding github page the different dependencies needed to install it. 
