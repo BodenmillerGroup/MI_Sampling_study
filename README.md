@@ -4,8 +4,10 @@ This repository contains all the code and scripts used to perform all the spatia
 
 This repository contains the following files :
 
-- **List_scripts_sampling.R** : file containing all the functions required for the spatial sampling analysis.
-- **Visium_data_processing.R** : script download, process and analyse Visium® datasets.
+- **List_scripts_sampling.R** : R file containing all the functions required for the spatial sampling analysis.
+- **List_scripts_IMC_processing.R** :  R file containing all the functions required for the analysis of segmented MI data.
+- **IMC_data_processing.R** : script to process and analyse segmented MI data, typically the output of [Steinbock pipeline](https://github.com/BodenmillerGroup/steinbock/pkgs/container/steinbock).
+- **Visium_data_processing.R** : script to download, process and analyse Visium® datasets.
 - **Example_sce_IMC.rds** : a rds file that contains a processed sce object derived from the IMC analysis of a healthy human lymph node. In order to have a lightweight file, only the cell type information is available for each cell, not the individual protein expression.
 -  **Example_sce_Visium.rds** : a rds file that contains a processed sce object derived from the Visium analysis of a human healthy human lymph node. In order to have a lightweight file, only the cell type information is available for each cell, the individual spot RNA expression profile is not provided.
 
