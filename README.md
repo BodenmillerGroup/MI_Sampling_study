@@ -80,6 +80,17 @@ Parameter_table = data.frame(Height =height_vector,
 Fitting_tau = Visualize_complex_sampling(Complex_sampling,Parameter_table)
 ```
 
+Last but not least we can plot and estimate the relation between tau and the FoV width :
+
+```r
+FoV_width = c(200,300,400,500,600)
+plot(FoV_width,Fitting_tau[,"tau"],log="xy",xlim=c(150,700),ylim=c(5,30),
+     xaxs='i',yaxs='i',xlab="FoV's width",ylab="Tau parameter",cex.lab=1.3,pch=21,bg="red3",cex=2)
+m = lm(log10(Fitting_tau[,"tau"])~log10(FoV_width))
+abline(coef(m),lwd=2,lty=2,col="grey")
+print(coef(m))
+```
+
 ## Performing sampling analysis using a large number of small FoVs
 
 To conclude this tutorial, we will see how to estimate the 𝛂 parameter using a large number of small FoV. This can be done using large-scale MI datasets for instance. We assume here that a correct SCE object is available and that it contains data from multiple FoVs. The FoV will be encoded in the **ImageNumber** channel (numerical values).
