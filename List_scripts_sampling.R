@@ -1,5 +1,14 @@
 #List of functions to perform spatial sampling analysis 
 
+library("SingleCellExperiment")
+library("doParallel")
+library("RColorBrewer")
+library("CountClust")
+library("N2R")
+library("igraph")
+library("SQUAREM")
+
+
 #O)Auxiliary functions for color convertion :
 
 color_convertion=function(x,max_scale=NULL) {
