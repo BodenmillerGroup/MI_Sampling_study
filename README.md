@@ -45,6 +45,9 @@ source("path/to/file/List_scripts_sampling.R")
 ```
 
 We will use the lymph node IMC dataset that is provided : 
+```r
+source("path/to/file/Example_sce_IMC.rds")
+```
 
 
 We can then perform a basic sampling analysis :
