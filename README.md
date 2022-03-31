@@ -19,7 +19,7 @@ Several packages are needed to perform the different scripts. They can be instal
 ```r
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install(c("SingleCellExperiment","doParallel","RColorBrewer",","N2R","igraph","SQUAREM","devtools"))
+BiocManager::install(c("SingleCellExperiment","doParallel","RColorBrewer","N2R","igraph","SQUAREM","devtools"))
 devtools::install_github('kkdey/CountClust')
 ```
 
