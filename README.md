@@ -19,7 +19,8 @@ Several packages are needed to perform the different scripts. They can be instal
 ```r
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install(c("SingleCellExperiment","doParallel","RColorBrewer","CountClust","N2R","igraph"))
+BiocManager::install(c("SingleCellExperiment","doParallel","RColorBrewer",","N2R","igraph","SQUAREM","devtools))
+devtools::install_github('kkdey/CountClust')
 ```
 
 In addition, the [Pagoda2 package](https://github.com/kharchenkolab/pagoda2) has to be installed to process the spatial transcriptomic data in an efficient manner. Please check on the corresponding github page the different dependencies needed to install it. 
@@ -37,19 +38,21 @@ Scripts to transform raw Visium or MI datasets into a usable SCE object are avai
 ## Performing regular sampling analysis using one large Field of View (FoV)
 
 We assume a properly organised SCE object (called here sce) is available. In addition the **List_scripts_sampling.R** file has been downloaded locally.
-We start by loading the different functions from the R file :
+We start by loading the different functions from the List_scripts_sampling.R file :
 
 ```r
 source("path/to/file/List_scripts_sampling.R")
 ```
 
+We will use the lymph node IMC dataset that is provided : 
+
 
 We can then perform a basic sampling analysis :
 
 ```r
-Simple_sampling_analysis = Perform_sampling_analysis(sce,Selected_image = 1,N_times = 50,N_sampling_region_vector = 1:20,width_FOV_vector = 400,height_FOV_vector = 400,Threshold_detection = 50)
+Simple_sampling_analysis = Perform_sampling_analysis(sce,Selected_image = 1,N_times = 50,N_sampling_region_vector = 1:10,width_FOV_vector = 400,height_FOV_vector = 400,Threshold_detection = 50)
 ```
-Here various samplings are tested with different number of ROIs (from 1 to 20) and with ROIs being squares of 400µm. We also specify that 50 cells/spots of each group/cluster have to be sampled in order to consider a group to be detected.
+Here various samplings are tested with different number of ROIs (from 1 to 10) and with ROIs being squares of 400µm. We also specify that 50 cells/spots of each group/cluster have to be sampled in order to consider a group to be detected. In case of Visium data analysis we recommend to set the Thresold_detection parameter to 2.
 
 We can then fit the empirical model described in the manuscript and extract the two model parameters :
 
@@ -83,7 +86,7 @@ Fitting_tau = Visualize_complex_sampling(Complex_sampling,Parameter_table)
 Last but not least we can plot and estimate the relation between tau and the FoV width :
 
 ```r
-FoV_width = c(200,300,400,500,600)
+FoV_width = c(200,250,300,350,400,450,500)
 plot(FoV_width,Fitting_tau[,"tau"],log="xy",xlim=c(150,700),ylim=c(5,30),
      xaxs='i',yaxs='i',xlab="FoV's width",ylab="Tau parameter",cex.lab=1.3,pch=21,bg="red3",cex=2)
 m = lm(log10(Fitting_tau[,"tau"])~log10(FoV_width))
