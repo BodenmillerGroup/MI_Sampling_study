@@ -75,8 +75,9 @@ data_location = read.delim("spatial//tissue_positions_list.csv",sep=",",header =
 data_location = data_location[colnames(data_raw),]
 data_location = data_location[,c(2,3)]
 colnames(data_location) = c("Location_X","Location_Y")
-data_location$Location_X = data_location$Location_X*6400/78
-data_location$Location_Y = data_location$Location_Y*6400/128
+#Scaling the location value so that we got  the location in µm and that it is compatible with observations in IMC...
+data_location$Location_X = data_location$Location_X*6400/78 
+data_location$Location_Y = data_location$Location_Y*6400/128 #
 
 #C)Filtering
 
