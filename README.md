@@ -37,17 +37,17 @@ Scripts to transform raw Visium or MI datasets into a usable SCE object are avai
 
 ## Performing regular sampling analysis using one large Field of View (FoV)
 
-We assume a properly organised SCE object (called here sce) is available. In addition the **List_scripts_sampling.R** file has been downloaded locally.
+We assume a properly organised SCE object (called here sce) is available and that the  **List_scripts_sampling.R** file has been downloaded locally.
 We start by loading the different functions from the List_scripts_sampling.R file :
 
 ```r
-source("path/to/file/List_scripts_sampling.R")
+source("List_scripts_sampling.R")
 ```
 
 We will use the lymph node IMC dataset that is provided : 
 
 ```r
-sce=readRDS("path/to/file/Example_sce_IMC.rds")
+sce=readRDS("Example_sce_IMC.rds")
 ```
 
 
