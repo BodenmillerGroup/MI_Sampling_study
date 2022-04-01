@@ -23,7 +23,7 @@ BiocManager::install(c("SingleCellExperiment","doParallel","RColorBrewer","N2R",
 devtools::install_github('kkdey/CountClust')
 ```
 
-In addition, the [Pagoda2 package](https://github.com/kharchenkolab/pagoda2) (we used Pagoda2 version 1.0.0)has to be installed to process the spatial transcriptomic data in an efficient manner. Please check on the corresponding github page the different dependencies needed to install it. 
+In addition, the [Pagoda2 package](https://github.com/kharchenkolab/pagoda2) (we used Pagoda2 version 1.0.0) has to be installed to process the spatial transcriptomic data in an efficient manner. Please check on the corresponding github page the different dependencies needed to install it. 
 
 
 ## Pre-processing the data 
