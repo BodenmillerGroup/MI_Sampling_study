@@ -78,7 +78,7 @@ Complex_sampling = Perform_sampling_analysis(sce,Selected_image = 1,N_times = 50
                                              Threshold_detection = 50)
 
 ```
-This step can be quite computationally heavy and will likely take some time. Once it is finished you can extract the different tau values easily :
+This step can be quite computationally heavy and will likely take some time (up to a few minutes for slow computers). Once it is finished you can extract the different tau values easily :
 
 ```r
 Parameter_table = data.frame(Height =height_vector,
